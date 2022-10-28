@@ -40,6 +40,8 @@ async function createTable(): Promise<void> {
         description VARCHAR(100) NOT NULL
     )`;
     await connection.pool.query(query); // Block the main thread until the query is complete
+
+    console.log("Table created..");
 }
 
 
@@ -48,19 +50,21 @@ async function createTable(): Promise<void> {
 async function populateTable(): Promise<void> {
     const queryText = `INSERT INTO products (name, price, description) VALUES ($1, $2, $3)`; // The dollar sign is a placeholder for a value
     // Do not await to run the query in parallel
-    connection.pool.query(queryText, ["Emerald", 250.00, "A green gem"]);
-    connection.pool.query(queryText, ["Ruby", 300.00, "A red gem"]);
-    connection.pool.query(queryText, ["Sapphire", 200.00, "A blue gem"]);
-    connection.pool.query(queryText, ["Amethyst", 150.00, "A purple gem"]);
-    connection.pool.query(queryText, ["Diamond", 750.00, "A clear gem"]);
-    connection.pool.query(queryText, ["Topaz", 100.00, "A yellow gem"]);
-    connection.pool.query(queryText, ["Opal", 50.00, "A white gem"]);
+    const items = [
+        ["Bracelet", 10.99, "A bracelet made of gold"],
+        ["Necklace", 15.99, "A necklace made of silver"],
+        ["Ring", 5.99, "A ring made of platinum"],
+        ["Earrings", 20.99, "Earrings made of gold"],
+        ["Watch", 30.99, "A watch made of silver"],
+        ["Belt", 25.99, "A belt made of leather"]
+    ]
 
-    // Wait for all queries to complete by delaying
-    // Check if the pool released all connections
-    while (connection.pool.totalCount !== connection.pool.idleCount) {
-        // Do nothing and wait for the pool to release all connections (all queries to complete)
+    for (const item of items) {
+        await connection.pool.query(queryText, item);
+        console.log("Inserted item: ", item);
     }
+
+    console.log("Table populated..");
 }
 
 
@@ -81,26 +85,31 @@ async function main(): Promise<void> {
 
     // If table does not exist, create and populate it
     if (!doesTableExist) {
-        createTable();
-        populateTable();
+        await createTable();
+        await populateTable();
     }
 
     // If table exists and the table is not empty, ask the user if they want to overwrite table
     if (!isTableEmpty) {
-        console.log("Table is empty");
         const input = await getInput("Do you want to overwrite table contents? (y/n): ");
         if (input === "y") {
+            await connection.pool.query("DELETE FROM products");
             await populateTable();
-        } else if (input === "n") {
-            exit(0);
         }
     } else {
+        console.log("Table is empty");
         await populateTable();
     }
-
-    exit(0);
 }
 
 
-main();
+main()
+    .then(() => {
+        console.log("Done");
+        exit(0);
+    });
 
+
+
+
+console.log("Program finished..");

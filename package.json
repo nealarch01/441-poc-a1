@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "init-db": "ts-node ./src/init.ts",
-    "start": "ts-node ./src/index.ts"
+    "start": "ts-node ./src/index.ts",
+    "postgraphile": "npx postgraphile -c postgres://postgres:postgres@localhost:2001/sample -s public --watch"
   },
   "keywords": [],
   "author": "",
