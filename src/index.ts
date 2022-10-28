@@ -1,6 +1,19 @@
 import { exit } from "process";
-import { createPostGraphileSchema } from "postgraphile";
+import { createPostGraphileSchema, withPostGraphileContext } from "postgraphile";
 import { Pool } from "pg";
+
+type Query = {
+    allProducts: {
+        edges: {
+            node: {
+                id: number;
+                name: string;
+                price: number;
+                description: string;
+            }
+        }[]
+    }
+}
 
 import { graphql } from "graphql";
 
@@ -38,13 +51,15 @@ async function main() {
             } 
         } 
     }`;
-    let result = await graphql(schema, queryText);
-    console.log("data: ");
-    console.log(result["data"]!["allProducts"]);
+    const result = await withPostGraphileContext({ pgPool }, async context => {
+        return await graphql(schema, queryText, null, context);
+    });
+    // console.log(result.data!);
+    console.log(result.data!["allProducts"]["edges"]);
 }
 
 main()
     .then(() => {
         console.log("Done..");
         exit(0);
-    })
+    });
