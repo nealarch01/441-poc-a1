@@ -1,7 +1,13 @@
-import { exit } from "process";
-import { createPostGraphileSchema, withPostGraphileContext } from "postgraphile";
-import { Pool } from "pg";
+import { exit } from "process"; // Ends the node process
+import { createPostGraphileSchema, withPostGraphileContext } from "postgraphile"; 
+// createPostGraphileSchema is a PostGraphile schema 
+// withPostGraphileContext is a direction connection to the database
+import { Pool } from "pg"; // Pool is a connection pool
+import { graphql } from "graphql"; // graphql is a function that takes a schema, a query, and a context and returns a promise
+import type { GraphQLSchema } from "graphql"; // GraphQLSchema type 
 
+
+// What the query output will look like:
 type Query = {
     allProducts: {
         edges: {
@@ -15,22 +21,19 @@ type Query = {
     }
 }
 
-import { graphql } from "graphql";
-
+// Pool of connections 
 const pgPool = new Pool({
     host: "localhost",
     database: "sample",
     port: 2001
 });
 
-async function createSchema(): Promise<any> {
-    return await createPostGraphileSchema(pgPool, ["public"]);
+// Creates and returns a GraphQL schema
+async function createSchema(): Promise<GraphQLSchema> {
+    return await createPostGraphileSchema(pgPool, ["public"]); // public is the schema name and is the default value
 }
 
-// https://www.graphile.org/postgraphile/usage-schema/
-// https://github.com/graphile/cookbook/blob/master/examples/schema_only/QueryRunner.js
-// https://www.graphile.org/postgraphile/usage-schema/
-
+// Utility function that makes a direct connection
 async function pgExample() {
     const queryText = `SELECT * FROM products`;
     let result = await pgPool.query(queryText);
@@ -54,7 +57,6 @@ async function main() {
     const result = await withPostGraphileContext({ pgPool }, async context => {
         return await graphql(schema, queryText, null, context);
     });
-    // console.log(result.data!);
     console.log(result.data!["allProducts"]["edges"]);
 }
 
