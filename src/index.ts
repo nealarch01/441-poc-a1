@@ -153,18 +153,22 @@ async function getProductBySku(sku: string): Promise<ProductReply> {
     }
 }
 
-async function updateQuanatity(sku: string, newQuantity: number): Promise<any> {
+async function updateQuanatity(sku: string, newQuantity: number): Promise< { err: string | null }> {
     const query = `mutation {
-        updateProductBySku(input: {sku: "${sku}", patch: {quantity: ${newQuantity}}}) {
+        updateProductBySku(input: { sku: "${sku}", 
+            productPatch: { 
+                quantity: ${newQuantity}
+            }
+        }) {
             product {
                 sku
                 quantity
             }
         }
-    }`;
+    }
+    `
     const result = await executeGraphQuery(query);
     if (result.err !== null) {
-        console.log(result.err);
         return {
             err: result.err
         }
@@ -175,7 +179,7 @@ async function updateQuanatity(sku: string, newQuantity: number): Promise<any> {
     }
 }
 
-async function deleteProduct(sku: string): Promise<any> {
+async function deleteProduct(sku: string): Promise< { err: string | null }> {
     const query = `mutation {
         deleteProductBySku(input: {sku: "${sku}"}) {
             clientMutationId
@@ -241,73 +245,12 @@ async function createProduct(product: Product): Promise<ProductReply> {
 
 
 async function main() {
-    console.log("Start of program");
-    console.log("-----------------------------------");
-    console.log("Getting all products: ");
-    const result1 = await getAllProducts();
-    if (result1.err !== null) {
-        console.log("An error occured while getting all products");
-        console.log(result1.err);
-        exit(1);
+    const result = await updateQuanatity("79-114-5362", 10);
+    if (result.err !== null) {
+        console.log(result.err);
+    } else {
+        console.log("Product updated");
     }
-    console.log(result1.products);
-
-    console.log("-----------------------------------");
-
-    console.log("Getting product by sku: ");
-    const result2 = await getProductBySku("79-114-5362");
-    if (result2.err !== null) {
-        console.log("An error occured while getting product by sku");
-        console.log(result2.err);
-        exit(1);
-    }
-    console.log(result2.products![0]);
-
-
-    console.log("-----------------------------------");
-    console.log("Creating a product: ");
-    const randomSku = () => {
-        // Sku format: 00-000-0000
-        const randomNum = () => Math.floor(Math.random() * 10); // Generates a random number between 0 and 9 inclusive
-        return `${randomNum()}${randomNum()}-${randomNum()}${randomNum()}${randomNum()}-${randomNum()}${randomNum()}${randomNum()}${randomNum()}`;
-    }
-    const product = new Product(randomSku(), "Product 1", "Brand 1", "Summary 1", 10.99, 2, "Category 1", 1, "2021-01-01", "Supplier 1");
-    const result3 = await createProduct(product);
-    console.log("New product created: ");
-    console.log(result3.products![0]);
-
-    console.log("-----------------------------------");
-    console.log("Displaying all products again: ");
-    const result4 = await getAllProducts();
-    if (result4.err !== null) {
-        console.log("An error occured while getting all products");
-        console.log(result4.err);
-        exit(1);
-    }
-    console.log(result4.products);
-
-    console.log("-----------------------------------");
-
-    const newProductSku = result3.products![0].sku;
-    console.log("Deleting newly created product: ");
-    const const5 = await deleteProduct(newProductSku);
-    if (const5.err !== null) {
-        console.log("An error occured while deleting product");
-        console.log(const5.err);
-        exit(1);
-    }
-    console.log("Successfully deleted product with sku: " + newProductSku);
-
-    console.log("-----------------------------------");
-
-    console.log("Displaying all products again: ");
-    const result6 = await getAllProducts();
-    if (result6.err !== null) {
-        console.log("An error occured while getting all products");
-        console.log(result6.err);
-        exit(1);
-    }
-    console.log(result6.products);
 }
 
 main()
