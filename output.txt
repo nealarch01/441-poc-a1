@@ -1,0 +1,289 @@
+
+> postgressql-sample@1.0.0 start
+> ts-node ./src/index.ts
+
+Start of program
+-----------------------------------
+Getting all products: 
+[
+  [Object: null prototype] {
+    node: [Object: null prototype] {
+      sku: '16-232-7508',
+      title: 'Infinity Bangle',
+      brand: 'Swarovski',
+      summary: 'Symbol of Love ',
+      price: 131.16,
+      quantity: 97,
+      category: 'Jewelry',
+      creator: 1,
+      creationDate: '2021-12-16',
+      supplier: 'Oyope'
+    }
+  },
+  [Object: null prototype] {
+    node: [Object: null prototype] {
+      sku: '28-122-9924',
+      title: 'Cabernet Sauvignon',
+      brand: 'Hectare',
+      summary: 'American',
+      price: 2.99,
+      quantity: 24,
+      category: 'Drinks',
+      creator: 1,
+      creationDate: '2022-08-10',
+      supplier: 'Buzzster'
+    }
+  },
+  [Object: null prototype] {
+    node: [Object: null prototype] {
+      sku: '32-885-9424',
+      title: 'Bread',
+      brand: 'Wonder Bread',
+      summary: 'Feed Your Joy. ',
+      price: 2.89,
+      quantity: 95,
+      category: 'Food',
+      creator: 2,
+      creationDate: '2022-07-27',
+      supplier: 'Avamm'
+    }
+  },
+  [Object: null prototype] {
+    node: [Object: null prototype] {
+      sku: '78-736-0229',
+      title: 'Superstar',
+      brand: 'Adidas',
+      summary: 'Originally made for basketball courts in the 70s.',
+      price: 67,
+      quantity: 62,
+      category: 'Shoes',
+      creator: 4,
+      creationDate: '2022-10-17',
+      supplier: 'Roodel'
+    }
+  },
+  [Object: null prototype] {
+    node: [Object: null prototype] {
+      sku: '79-114-5362',
+      title: 'MX Master 3',
+      brand: 'Logitech',
+      summary: 'Ergonomic Mouse',
+      price: 99.99,
+      quantity: 61,
+      category: 'Electronics',
+      creator: 1,
+      creationDate: '2022-01-02',
+      supplier: 'Skinte'
+    }
+  }
+]
+-----------------------------------
+Getting product by sku: 
+[Object: null prototype] {
+  sku: '79-114-5362',
+  title: 'MX Master 3',
+  brand: 'Logitech',
+  summary: 'Ergonomic Mouse',
+  price: 99.99,
+  quantity: 61,
+  category: 'Electronics',
+  creator: 1,
+  creationDate: '2022-01-02',
+  supplier: 'Skinte'
+}
+-----------------------------------
+Creating a product: 
+[Object: null prototype] {
+  createProduct: [Object: null prototype] {
+    product: [Object: null prototype] {
+      sku: '38-100-1877',
+      title: 'Product 1',
+      brand: 'Brand 1',
+      summary: 'Summary 1',
+      price: 10.99,
+      quantity: 2,
+      category: 'Category 1',
+      creator: 1,
+      creationDate: '2021-01-01',
+      supplier: 'Supplier 1'
+    }
+  }
+}
+New product created: 
+Product {
+  sku: '38-100-1877',
+  title: 'Product 1',
+  brand: 'Brand 1',
+  summary: 'Summary 1',
+  price: 10.99,
+  quantity: 2,
+  category: 'Category 1',
+  creator: 1,
+  creation_date: '2021-01-01',
+  supplier: 'Supplier 1'
+}
+Displaying all products again: 
+[
+  [Object: null prototype] {
+    node: [Object: null prototype] {
+      sku: '16-232-7508',
+      title: 'Infinity Bangle',
+      brand: 'Swarovski',
+      summary: 'Symbol of Love ',
+      price: 131.16,
+      quantity: 97,
+      category: 'Jewelry',
+      creator: 1,
+      creationDate: '2021-12-16',
+      supplier: 'Oyope'
+    }
+  },
+  [Object: null prototype] {
+    node: [Object: null prototype] {
+      sku: '28-122-9924',
+      title: 'Cabernet Sauvignon',
+      brand: 'Hectare',
+      summary: 'American',
+      price: 2.99,
+      quantity: 24,
+      category: 'Drinks',
+      creator: 1,
+      creationDate: '2022-08-10',
+      supplier: 'Buzzster'
+    }
+  },
+  [Object: null prototype] {
+    node: [Object: null prototype] {
+      sku: '32-885-9424',
+      title: 'Bread',
+      brand: 'Wonder Bread',
+      summary: 'Feed Your Joy. ',
+      price: 2.89,
+      quantity: 95,
+      category: 'Food',
+      creator: 2,
+      creationDate: '2022-07-27',
+      supplier: 'Avamm'
+    }
+  },
+  [Object: null prototype] {
+    node: [Object: null prototype] {
+      sku: '38-100-1877',
+      title: 'Product 1',
+      brand: 'Brand 1',
+      summary: 'Summary 1',
+      price: 10.99,
+      quantity: 2,
+      category: 'Category 1',
+      creator: 1,
+      creationDate: '2021-01-01',
+      supplier: 'Supplier 1'
+    }
+  },
+  [Object: null prototype] {
+    node: [Object: null prototype] {
+      sku: '78-736-0229',
+      title: 'Superstar',
+      brand: 'Adidas',
+      summary: 'Originally made for basketball courts in the 70s.',
+      price: 67,
+      quantity: 62,
+      category: 'Shoes',
+      creator: 4,
+      creationDate: '2022-10-17',
+      supplier: 'Roodel'
+    }
+  },
+  [Object: null prototype] {
+    node: [Object: null prototype] {
+      sku: '79-114-5362',
+      title: 'MX Master 3',
+      brand: 'Logitech',
+      summary: 'Ergonomic Mouse',
+      price: 99.99,
+      quantity: 61,
+      category: 'Electronics',
+      creator: 1,
+      creationDate: '2022-01-02',
+      supplier: 'Skinte'
+    }
+  }
+]
+-----------------------------------
+Deleting newly created product: 
+Successfully deleted product with sku: 38-100-1877
+-----------------------------------
+Displaying all products again: 
+[
+  [Object: null prototype] {
+    node: [Object: null prototype] {
+      sku: '16-232-7508',
+      title: 'Infinity Bangle',
+      brand: 'Swarovski',
+      summary: 'Symbol of Love ',
+      price: 131.16,
+      quantity: 97,
+      category: 'Jewelry',
+      creator: 1,
+      creationDate: '2021-12-16',
+      supplier: 'Oyope'
+    }
+  },
+  [Object: null prototype] {
+    node: [Object: null prototype] {
+      sku: '28-122-9924',
+      title: 'Cabernet Sauvignon',
+      brand: 'Hectare',
+      summary: 'American',
+      price: 2.99,
+      quantity: 24,
+      category: 'Drinks',
+      creator: 1,
+      creationDate: '2022-08-10',
+      supplier: 'Buzzster'
+    }
+  },
+  [Object: null prototype] {
+    node: [Object: null prototype] {
+      sku: '32-885-9424',
+      title: 'Bread',
+      brand: 'Wonder Bread',
+      summary: 'Feed Your Joy. ',
+      price: 2.89,
+      quantity: 95,
+      category: 'Food',
+      creator: 2,
+      creationDate: '2022-07-27',
+      supplier: 'Avamm'
+    }
+  },
+  [Object: null prototype] {
+    node: [Object: null prototype] {
+      sku: '78-736-0229',
+      title: 'Superstar',
+      brand: 'Adidas',
+      summary: 'Originally made for basketball courts in the 70s.',
+      price: 67,
+      quantity: 62,
+      category: 'Shoes',
+      creator: 4,
+      creationDate: '2022-10-17',
+      supplier: 'Roodel'
+    }
+  },
+  [Object: null prototype] {
+    node: [Object: null prototype] {
+      sku: '79-114-5362',
+      title: 'MX Master 3',
+      brand: 'Logitech',
+      summary: 'Ergonomic Mouse',
+      price: 99.99,
+      quantity: 61,
+      category: 'Electronics',
+      creator: 1,
+      creationDate: '2022-01-02',
+      supplier: 'Skinte'
+    }
+  }
+]
+Program ended with no errors 😎
