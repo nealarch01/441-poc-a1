@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Product = exports.createProduct = exports.deleteProduct = exports.updateQuanatity = exports.getProductBySku = exports.getAllProducts = void 0;
+exports.Product = exports.createProduct = exports.deleteProduct = exports.updateQuantity = exports.getProductBySku = exports.getAllProducts = void 0;
 const postgraphile_1 = require("postgraphile");
 // createPostGraphileSchema is a PostGraphile schema 
 // withPostGraphileContext is a direction connection to the database
@@ -130,7 +130,7 @@ function getProductBySku(sku) {
     });
 }
 exports.getProductBySku = getProductBySku;
-function updateQuanatity(sku, newQuantity) {
+function updateQuantity(sku, newQuantity) {
     return __awaiter(this, void 0, void 0, function* () {
         const query = `mutation {
         updateProductBySku(input: { sku: "${sku}", 
@@ -157,7 +157,7 @@ function updateQuanatity(sku, newQuantity) {
         };
     });
 }
-exports.updateQuanatity = updateQuanatity;
+exports.updateQuantity = updateQuantity;
 function deleteProduct(sku) {
     return __awaiter(this, void 0, void 0, function* () {
         const query = `mutation {

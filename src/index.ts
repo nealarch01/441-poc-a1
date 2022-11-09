@@ -153,7 +153,7 @@ async function getProductBySku(sku: string): Promise<ProductReply> {
     }
 }
 
-async function updateQuanatity(sku: string, newQuantity: number): Promise< { err: string | null }> {
+async function updateQuantity(sku: string, newQuantity: number): Promise< { err: string | null }> {
     const query = `mutation {
         updateProductBySku(input: { sku: "${sku}", 
             productPatch: { 
@@ -259,4 +259,4 @@ async function createProduct(product: Product): Promise<ProductReply> {
 //         exit(0);
 //     });
 
-export { getAllProducts, getProductBySku, updateQuanatity, deleteProduct, createProduct, Product };
+export { getAllProducts, getProductBySku, updateQuantity, deleteProduct, createProduct, Product };
