@@ -244,17 +244,19 @@ async function createProduct(product: Product): Promise<ProductReply> {
 }
 
 
-async function main() {
-    const result = await updateQuanatity("79-114-5362", 10);
-    if (result.err !== null) {
-        console.log(result.err);
-    } else {
-        console.log("Product updated");
-    }
-}
+// async function main() {
+//     const result = await updateQuanatity("79-114-5362", 10);
+//     if (result.err !== null) {
+//         console.log(result.err);
+//     } else {
+//         console.log("Product updated");
+//     }
+// }
 
-main()
-    .then(() => {
-        console.log("Program ended with no errors 😎");
-        exit(0);
-    });
+// main()
+//     .then(() => {
+//         console.log("Program ended with no errors 😎");
+//         exit(0);
+//     });
+
+export { getAllProducts, getProductBySku, updateQuanatity, deleteProduct, createProduct, Product };
