@@ -6,6 +6,9 @@ import { Pool } from "pg"; // Pool is a connection pool
 import { graphql } from "graphql"; // graphql is a function that takes a schema, a query, and a context and returns a promise
 import type { GraphQLSchema } from "graphql"; // GraphQLSchema type 
 
+// Config import
+import config from "./config.json";
+
 class Product {
     sku: string;
     title: string;
@@ -62,11 +65,7 @@ type ProductReply = {
 
 
 // Pool of connections 
-const pgPool = new Pool({
-    host: "localhost",
-    database: "development",
-    port: 2001
-});
+const pgPool = new Pool(config);
 
 // Creates and returns a GraphQL schema
 async function createSchema(): Promise<GraphQLSchema> {
