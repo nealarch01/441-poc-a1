@@ -245,12 +245,8 @@ async function createProduct(product: Product): Promise<ProductReply> {
 
 
 // async function main() {
-//     const result = await updateQuanatity("79-114-5362", 10);
-//     if (result.err !== null) {
-//         console.log(result.err);
-//     } else {
-//         console.log("Product updated");
-//     }
+//     let allProds = await getAllProducts();
+//     console.log(allProds);
 // }
 
 // main()
